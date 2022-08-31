@@ -1,7 +1,15 @@
+// class PlatziMath {
+// static esPar() {}
+// static esImpar() {}
+// static calcularMediana() {}
+// }
+
+const PlatziMath = {};
+
 // numero / 2
 // (numero % 2)
 // true = 1 | false = 0
-function esPar(lista) {
+PlatziMath.esPar = function esPar(lista) {
   return !(lista.length % 2);
   // if !(lista.length % 2) {
   //   return false;
@@ -10,7 +18,7 @@ function esPar(lista) {
   // }
 }
 
-function esImpar(lista) {
+PlatziMath.esImpar = function esImpar(lista) {
   return (lista.length % 2);
   // if (lista.length % 2) {
   //   return true;
@@ -20,7 +28,7 @@ function esImpar(lista) {
 }
 
 
-function calcularModa(lista) {
+PlatziMath.calcularModa = function calcularModa(lista) {
   const listaCount = {};
 
   for (let i = 0; i < lista.length; i++) {
@@ -34,11 +42,17 @@ function calcularModa(lista) {
   }
 
   const listaArray = Object.entries(listaCount);
-  console.log({ listaCount, listaArray });
+  const listaOrdenada = ordenarListaBidimensional(listaArray, 1);
+  const listaMaxNumber = listaOrdenada[listaOrdenada.length - 1];
+
+  const moda = listaMaxNumber[0];
+  // console.log({ listaCount, listaArray, listaOrdenada, listaMaxNumber });
+  // console.log('La moda es: ' + listaMaxNumber[0]);
+  return moda;
 }
 
 
-function calcularMediana(listaDesordenada) {
+PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
   const lista = ordenarLista(listaDesordenada);
   const listaEsPar = esPar(lista);
 
@@ -64,7 +78,7 @@ function calcularMediana(listaDesordenada) {
 }
 
 
-function calcularPromedio(lista) {
+PlatziMath.calcularPromedio = function calcularPromedio(lista) {
   function sumarTodosElementos(valorAcumulado, nuevoValor) {
     return valorAcumulado + nuevoValor;
   }
@@ -79,7 +93,7 @@ function calcularPromedio(lista) {
 }
 
 
-function ordenarLista(listaDesordenada) {
+PlatziMath.ordenarLista = function ordenarLista(listaDesordenada) {
   function ordenarListaSort(valorAcumulado, nuevoValor) {
     // if (valorAcumulado > nuevoValor) {
     //   return 1; // Es F entonces +1
@@ -103,7 +117,7 @@ function ordenarLista(listaDesordenada) {
 }
 
 // [[0,1,2,3], [0,1], [0,1]]
-function ordenarListaBidimensional(listaDesordenada, i) {
+PlatziMath.ordenarListaBidimensional = function ordenarListaBidimensional(listaDesordenada, i) {
   function ordenarListaSort(valorAcumulado, nuevoValor) {
     // return valorAcumulado[1] - nuevoValor[1];
     return valorAcumulado[i] - nuevoValor[i];
